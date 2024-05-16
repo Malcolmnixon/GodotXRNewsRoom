@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://b62do27acyxxd"]
+
+[ext_resource type="PackedScene" uid="uid://w568c2iiy102" path="res://client/client.tscn" id="1_e3ruk"]
+[ext_resource type="PackedScene" uid="uid://c5usa84dqhbuq" path="res://assets/avatar/loading.glb" id="2_2467c"]
+
+[node name="ClientAvatar" instance=ExtResource("1_e3ruk")]
+
+[node name="AvatarNode3D" type="XRNode3D" parent="." index="1"]
+tracker = &"/vmc/body_tracker"
+
+[node name="loading" parent="AvatarNode3D" index="0" instance=ExtResource("2_2467c")]
+
+[node name="XRFaceModifier3D" type="XRFaceModifier3D" parent="AvatarNode3D/loading/Armature/GeneralSkeleton/Wolf3D_Avatar" index="0"]
+face_tracker = &"/vmc/face_tracker"
+target = NodePath("..")
+
+[node name="XRBodyModifier3D" type="XRBodyModifier3D" parent="AvatarNode3D/loading/Armature/GeneralSkeleton" index="1"]
+body_tracker = &"/vmc/body_tracker"
+
+[editable path="AvatarNode3D/loading"]

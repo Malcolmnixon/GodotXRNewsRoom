@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://dqgomdl14eiyl"]
+
+[ext_resource type="PackedScene" uid="uid://b62do27acyxxd" path="res://client/client_avatar.tscn" id="1_vlu4r"]
+[ext_resource type="PackedScene" uid="uid://dvnmxtkucajqw" path="res://addons/godot_vmc_tracker/vmc_tracker.tscn" id="2_vyx6d"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ew6nb"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_oqwcd"]
+sky_material = SubResource("ProceduralSkyMaterial_ew6nb")
+
+[sub_resource type="Environment" id="Environment_nj8rl"]
+background_mode = 2
+sky = SubResource("Sky_oqwcd")
+tonemap_mode = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s6qcy"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="QuadMesh" id="QuadMesh_atkwc"]
+size = Vector2(10, 10)
+
+[node name="ClientVmc" instance=ExtResource("1_vlu4r")]
+
+[node name="VmcTracker" parent="." index="0" instance=ExtResource("2_vyx6d")]
+position_mode = 1
+udp_listener_port = 39539
+
+[node name="WorldEnvironment" parent="." index="1"]
+environment = SubResource("Environment_nj8rl")
+
+[node name="Camera3D" type="Camera3D" parent="." index="3"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.5, -2)
+
+[node name="DirectionalLight3D" parent="." index="4"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+
+[node name="CollisionShape3D" parent="StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_s6qcy")
+
+[node name="Ground" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_atkwc")
+
+[editable path="AvatarNode3D/loading"]

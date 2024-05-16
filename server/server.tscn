@@ -1,0 +1,107 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu3svrvy23iyn"]
+
+[ext_resource type="Script" path="res://server/server.gd" id="1_s0ixq"]
+
+[node name="Server" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s0ixq")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Godot XR News Room Server"
+horizontal_alignment = 1
+
+[node name="Pages" type="TabContainer" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+tabs_visible = false
+
+[node name="Start" type="MarginContainer" parent="PanelContainer/VBoxContainer/Pages"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Pages/Start"]
+layout_mode = 2
+
+[node name="Options" type="GridContainer" parent="PanelContainer/VBoxContainer/Pages/Start/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+columns = 2
+
+[node name="Port" type="Label" parent="PanelContainer/VBoxContainer/Pages/Start/VBoxContainer/Options"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Port"
+
+[node name="PortTextEdit" type="TextEdit" parent="PanelContainer/VBoxContainer/Pages/Start/VBoxContainer/Options"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Padding" type="Control" parent="PanelContainer/VBoxContainer/Pages/Start/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer/Pages/Start/VBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonBar" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Pages/Start/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="StartButton" type="Button" parent="PanelContainer/VBoxContainer/Pages/Start/VBoxContainer/ButtonBar"]
+layout_mode = 2
+text = "Start
+"
+
+[node name="Running" type="MarginContainer" parent="PanelContainer/VBoxContainer/Pages"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Pages/Running"]
+layout_mode = 2
+
+[node name="Padding" type="Control" parent="PanelContainer/VBoxContainer/Pages/Running/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer/Pages/Running/VBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonBar" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Pages/Running/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="StopButton" type="Button" parent="PanelContainer/VBoxContainer/Pages/Running/VBoxContainer/ButtonBar"]
+layout_mode = 2
+text = "Stop"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Pages/Start/VBoxContainer/ButtonBar/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Pages/Running/VBoxContainer/ButtonBar/StopButton" to="." method="_on_stop_button_pressed"]
